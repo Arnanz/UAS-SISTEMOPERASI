@@ -6,16 +6,17 @@
 
 clear
 
-echo "===================="
-echo "Program Manajer File"
-echo "===================="
+echo "===================================="
+echo "       Program Manajer File         "
+echo "===================================="
 echo "Pilih Menu:"
 echo "1. Lihat File"
 echo "2. Pindah File"
 echo "3. Hapus File"
 echo "4. Buat File"
-echo "5. Cari File Berdasarkan Ukuran"
-echo "===================="
+echo "5. Tampilkan File Berdasarkan Ukuran"
+echo "6. Tampilkan Jumlah Baris File"
+echo "===================================="
 read -p "Masukkan Pilihan: " pilihan
 
 case $pilihan in
@@ -51,6 +52,14 @@ case $pilihan in
     5) read -p "Masukkan Ukuran File yang ingin dicari (dalam KB): " file_size
     echo "File dengan ukuran lebih besar dari$file_size KB:"
     find . -type f -size +${file_size}k -exec du -h {} + awk '$1+0 > '$file_size' { print $1 "\t" $2 }'
+    ;;
+    6) read -p "Masukkan Nama File yang Akan Dihitung Jumlah Barisnya: " file_to_count
+    if [ -f $file_to_count ]; then
+        line_count=$(wc -l < $file_to_count)
+        echo "File '$file_to_count' memiliki $line_count baris."
+    else
+        echo "File '$file_to_count' Tidak Ditemukan!"
+    fi
     ;;
     *) echo "Pilihan tidak valid!"
     ;;
