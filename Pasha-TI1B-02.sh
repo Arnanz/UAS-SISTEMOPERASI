@@ -51,7 +51,7 @@ case $pilihan in
     ;;
     5) read -p "Masukkan Ukuran File yang ingin dicari (dalam KB): " file_size
     echo "File dengan ukuran lebih besar dari$file_size KB:"
-    find . -type f -size +${file_size}k -exec du -h {} + awk '$1+0 > '$file_size' { print $1 "\t" $2 }'
+    find . -type f -size +${file_size}k -exec du -h {} +
     ;;
     6) read -p "Masukkan Nama File yang Akan Dihitung Jumlah Barisnya: " file_to_count
     if [ -f $file_to_count ]; then
